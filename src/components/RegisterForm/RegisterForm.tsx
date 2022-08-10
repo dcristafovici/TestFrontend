@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../Button";
 import { ButtonClassNameEnum } from "../Button/ButtonInterface";
 import Form from "../Form";
@@ -6,20 +6,39 @@ import Input from "../Input/Input";
 import { InputInterface } from "../Input/InputInterface";
 import { RegisterFormFields, RegisterInitialValues, RestaurantSchemaValidation } from './RegisterFormSettings'
 import { useFormik } from 'formik';
+import { REGISTER_USER_PATH } from "../../constants/fetch_constants";
 
 const RegisterForm:React.FC = () => {
-  const [initialValues, setInitialValues] = useState(RegisterInitialValues);
-
   const formik = useFormik({
-    initialValues,
+    initialValues: RegisterInitialValues,
     validationSchema: RestaurantSchemaValidation,
     validateOnChange: true,
     validateOnBlur: true,
     enableReinitialize: true,
-    onSubmit: (values) => {
-      console.log(values);
-    }
+    onSubmit: (values, resetForm) => handleSubmit(values, resetForm),
   })
+
+
+  const handleSubmit = (values: any, { resetForm }: any) => {
+    const { repeatPassword, ...filteredItems } = values;
+    fetch(REGISTER_USER_PATH,
+      {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(filteredItems) 
+      })
+      .then((res) => {
+        if (res.status === 201) {
+          resetForm();
+        } else {
+          console.log(res.statusText);
+        }
+      })
+  }
 
   return (
     <Form onSubmit={formik.handleSubmit}>

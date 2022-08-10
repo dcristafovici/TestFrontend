@@ -15,17 +15,17 @@ export const RegisterFormFields: InputInterface[] = [
   },
   {
     type: InputTypeEnum.PASSWORD,
-    name: 'repeat_password',
+    name: 'repeatPassword',
     placeholder: 'Repeat Password',
   },
   {
     type: InputTypeEnum.TEXT,
-    name: 'first_name',
+    name: 'firstName',
     placeholder: 'First name',
   },
   {
     type: InputTypeEnum.TEXT,
-    name: 'last_name',
+    name: 'lastName',
     placeholder: 'Last name',
   },
 ]
@@ -34,9 +34,9 @@ export const RegisterFormFields: InputInterface[] = [
 export const RegisterInitialValues = {
   email: "",
   password: "",
-  repeat_password: "",
-  first_name: "",
-  last_name: ""
+  repeatPassword: "",
+  firstName: "",
+  lastName: ""
 }
 
 export const RestaurantSchemaValidation = Yup.object().shape({
@@ -46,11 +46,11 @@ export const RestaurantSchemaValidation = Yup.object().shape({
   password: Yup.string()
     .min(6)
     .required('Password is required'),
-  repeat_password: Yup.string()
+  repeatPassword: Yup.string()
     .required('Repetead password is required')
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-  first_name: Yup.string()
+  firstName: Yup.string()
     .required('First name is required'),
-  last_name: Yup.string()
+  lastName: Yup.string()
     .required('Last name is required')
 })
