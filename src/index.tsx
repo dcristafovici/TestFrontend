@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { Global } from './Global/Global';
-import { checkUserByToken } from './helpers/checkUserByToken';
+import { Store } from './redux/Store';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
+import CheckUserByToken from './helpers/CheckUserByToken';
 
 
 const root = ReactDOM.createRoot(
@@ -11,9 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {checkUserByToken()}
-    <App />
-    <Global />
+    <Provider store={Store}>
+      <CheckUserByToken />
+      <App />
+      <Global />
+    </Provider>
   </React.StrictMode>
 );
 
