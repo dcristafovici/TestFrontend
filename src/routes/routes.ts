@@ -1,3 +1,4 @@
+import Account from '../pages/Account';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
@@ -12,11 +13,15 @@ export const RoutesDetailes: RoutesDetailsTypes = {
   },
   REGISTER: {
     name: 'Register',
-    path: '/register',
+    path: '/register/',
   },
   LOGIN: {
     name: 'Login',
-    path: '/login'
+    path: '/login/'
+  },
+  ACCOUNT: {
+    name: 'Account',
+    path: '/account/'
   }
 };
 
@@ -39,6 +44,12 @@ const routes: RouteTypes[] = [
     path: RoutesDetailes.LOGIN.path,
     guard: DefaultGuard,
     component: Login,
+  },
+  {
+    name: RoutesDetailes.ACCOUNT.name,
+    path: RoutesDetailes.ACCOUNT.path,
+    guard: DefaultGuard,
+    component: Account,
   }
 ];
 

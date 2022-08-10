@@ -15,6 +15,7 @@ export type RoutesDetailsTypes = {
   HOME_PAGE: RoutesPathTypes,
   REGISTER: RoutesPathTypes,
   LOGIN: RoutesPathTypes,
+  ACCOUNT: RoutesPathTypes,
 }
 
 export interface TokenGuardProps {

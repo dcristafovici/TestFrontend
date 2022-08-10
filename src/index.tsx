@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { Global } from './Global/Global';
+import { checkUserByToken } from './helpers/checkUserByToken';
 import reportWebVitals from './reportWebVitals';
 
 
@@ -10,6 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    {checkUserByToken()}
     <App />
     <Global />
   </React.StrictMode>

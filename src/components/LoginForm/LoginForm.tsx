@@ -7,6 +7,7 @@ import Form from "../Form";
 import Input from "../Input/Input";
 import { InputInterface } from "../Input/InputInterface";
 import { LoginFormFields, LoginInitialValues, LoginSchemaValidation } from "./LoginFormSettings";
+import { LoginResponseInterface } from "./LoginInterface";
 
 const LoginForm:React.FC = () => {
   const formik = useFormik({
@@ -33,7 +34,11 @@ const LoginForm:React.FC = () => {
       })
       .then((res) => {
         if (res.ok) {
-          // resetForm();
+         res.json().then((responseJson: LoginResponseInterface) => {
+          const { access_token, refresh_token } = responseJson;
+          localStorage.setItem('access_token', access_token);
+          localStorage.setItem('refresh_token', refresh_token);
+         })
         } else {
           console.log(res.statusText);
         }
