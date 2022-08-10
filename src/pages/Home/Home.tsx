@@ -1,7 +1,8 @@
 import React from "react";
+import Chart from "../../components/Chart";
 
 const Home:React.FC = () => (
-  <h1>home</h1>
+  <Chart />
 )
 
 export default Home;
