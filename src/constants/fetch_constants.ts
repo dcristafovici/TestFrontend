@@ -3,3 +3,4 @@ export const USER_ENTITY = '/user'
 
 
 export const REGISTER_USER_PATH = `${PATH_TO_SERVER}${USER_ENTITY}/register`
+export const LOGIN_USER_PATH = `${PATH_TO_SERVER}${USER_ENTITY}/login`

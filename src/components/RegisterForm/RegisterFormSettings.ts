@@ -39,7 +39,7 @@ export const RegisterInitialValues = {
   lastName: ""
 }
 
-export const RestaurantSchemaValidation = Yup.object().shape({
+export const RegisterSchemaValidation = Yup.object().shape({
   email: Yup.string()
     .email('Must be a email')
     .required('Email is required'),

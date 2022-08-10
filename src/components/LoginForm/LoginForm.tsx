@@ -1,17 +1,17 @@
+import { useFormik } from "formik";
 import React from "react";
+import { LOGIN_USER_PATH } from "../../constants/fetch_constants";
 import Button from "../Button";
 import { ButtonClassNameEnum } from "../Button/ButtonInterface";
 import Form from "../Form";
 import Input from "../Input/Input";
 import { InputInterface } from "../Input/InputInterface";
-import { RegisterFormFields, RegisterInitialValues, RegisterSchemaValidation } from './RegisterFormSettings'
-import { useFormik } from 'formik';
-import { REGISTER_USER_PATH } from "../../constants/fetch_constants";
+import { LoginFormFields, LoginInitialValues, LoginSchemaValidation } from "./LoginFormSettings";
 
-const RegisterForm:React.FC = () => {
+const LoginForm:React.FC = () => {
   const formik = useFormik({
-    initialValues: RegisterInitialValues,
-    validationSchema: RegisterSchemaValidation,
+    initialValues: LoginInitialValues,
+    validationSchema: LoginSchemaValidation,
     validateOnChange: true,
     validateOnBlur: true,
     enableReinitialize: true,
@@ -21,7 +21,7 @@ const RegisterForm:React.FC = () => {
 
   const handleSubmit = (values: any, { resetForm }: any) => {
     const { repeatPassword, ...filteredItems } = values;
-    fetch(REGISTER_USER_PATH,
+    fetch(LOGIN_USER_PATH,
       {
         method: 'POST',
         mode: 'cors',
@@ -32,8 +32,8 @@ const RegisterForm:React.FC = () => {
         body: JSON.stringify(filteredItems) 
       })
       .then((res) => {
-        if (res.status === 201) {
-          resetForm();
+        if (res.ok) {
+          // resetForm();
         } else {
           console.log(res.statusText);
         }
@@ -42,9 +42,9 @@ const RegisterForm:React.FC = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <div className="form-title">Register form</div>
+      <div className="form-title">Login form</div>
       
-      {RegisterFormFields.map((field: InputInterface) => {
+      {LoginFormFields.map((field: InputInterface) => {
         const { name, type, placeholder } = field;
         const error: any = formik.errors;
         return <Input
@@ -66,4 +66,5 @@ const RegisterForm:React.FC = () => {
   )
 }
 
-export default RegisterForm;
+export default LoginForm;
+
